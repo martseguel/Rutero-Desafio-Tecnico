@@ -115,7 +115,7 @@ def index():
 
     blog_data = obtener_blog_data(current_url)
 
-    return render_template('./template.html', blog_data=blog_data, current_page=current_page, total_pages=obtener_numero_total_de_paginas(1), logo_navbar=get_logo(), pagination=get_pagination(current_url), partners=get_partners())
+    return render_template('./template.html', blog_data=blog_data, current_page=current_page, total_pages=obtener_numero_total_de_paginas(1), logo_navbar=get_logo(), partners=get_partners())
 
 
 def get_top_section(url):
