@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Replika de Ruterocamping</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .body {
+            font-family: "Barlow", sans-serif;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+        }
+
+        .camping-card {
+            margin-bottom: 3.125rem;
+            border-radius: 0;
+            border: 0;
+            position: relative;
+        }
+
+        .camping-card-cover-container {
+            height: 15.8125rem;
+            overflow: hidden;
+            border-radius: 0.375rem;
+            margin-bottom: 1.0625rem;
+            background-color: #94A4B5;
+        }
+
+        .camping-card-cover-container .camping-card-cover {
+            object-fit: cover;
+            height: 100%;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+
+        .page-content img {
+            max-width: 100%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .camping-card-cover {
+            width: 100%;
+            height: auto;
+            border-radius: 0.375rem;
+            margin-bottom: 1.0625rem;
+        }
+
+        img {
+            vertical-align: middle;
+            border-style: none;
+        }
+
+        .navbar {
+            background-color: white;
+            border: 0;
+            padding: 0rem 1rem;
+            margin-bottom: 0rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .navbar-expand-lg {
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+        }
+
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            margin-bottom: 2em;
+        }
+
+        .navbar>.container,
+        .navbar>.container-fluid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-brand {
+            display: inline-block;
+            padding-top: 0.3125rem;
+            padding-bottom: 0.3125rem;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+            line-height: inherit;
+            white-space: nowrap;
+        }
+
+        .navbar-brand img {
+            width: 162px;
+            height: auto;
+        }
+
+        .nav-link {
+            color: #4086a4;
+            font-weight: 500;
+        }
+
+        .camping-card-title {
+            font-size: 1.125rem;
+            line-height: 1.2222222222;
+            color: black;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .camping-card-title a {
+            color: black;
+        }
+
+        .pagination-container {
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+        }
+
+        .justify-content-center {
+            justify-content: center !important;
+        }
+
+        .pagination {
+            display: flex;
+            padding-left: 0;
+            list-style: none;
+            border-radius: 0.25rem;
+        }
+
+        .pagination .page-item {
+            margin: 0 0.5rem;
+        }
+
+        .pagination .page-link {
+            border-radius: 0.25rem;
+            color: #36B0A7;
+            border-color: #36B0A7;
+            font-size: 1rem;
+            line-height: 1.0;
+            font-weight: normal;
+        }
+
+        .page-link:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+
+        .page-link {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-top-color: rgb(222, 226, 230);
+            border-right-color: rgb(222, 226, 230);
+            border-bottom-color: rgb(222, 226, 230);
+            border-left-color: rgb(222, 226, 230);
+        }
+
+        .pagination .page-item.active .page-link {
+            color: white;
+            background-color: #36B0A7;
+            border-color: #36B0A7;
+        }
+
+        .page-item.active .page-link {
+            z-index: 1;
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .fa {
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: 14px;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .footer {
+            border-top: 0.0625rem solid #D1DEE6;
+            padding: 2.5rem 0 3.75rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            line-height: 1.75;
+            font-weight: 500;
+            color: black;
+            vertical-align: middle;
+            display: inline-block;
+            margin-bottom: 1.875rem;
+        }
+
+        .footer-copyright img {
+            width: 22px;
+            height: 24px;
+            margin-right: 0.625rem;
+            display: inline-block;
+        }
+
+        .footer-list {
+            list-style: none;
+            margin: 0 0 1.25rem;
+            padding: 0;
+        }
+
+        .footer-list .header {
+            font-size: 0.75rem;
+            color: #94A4B5;
+            line-height: 1.1666666667;
+            font-weight: 500;
+            margin-bottom: 0.9375rem;
+            text-transform: uppercase;
+        }
+
+        .footer-list .partner-logo {
+            display: inline-block;
+            padding-right: 0.9375rem;
+        }
+
+        .footer-list li {
+            margin-bottom: 0.625rem;
+            color: #000000;
+            font-size: 0.875rem;
+            line-height: 1.2142857143;
+            font-weight: 500;
+        }
+
+        .footer-list .partner-logo a {
+            display: inline-block;
+        }
+
+        .footer-list li a {
+            color: #000000;
+            font-weight: 500;
+        }
+
+        .footer-list .partner-logo img {
+            width: 50px;
+        }
+
+        .footer-list li a {
+            color: #000000;
+            font-weight: 500;
+        }
+
+        .footer-list .social a {
+            color: #94A4B5;
+            font-size: 1.5rem;
+            line-height: 1.1666666667;
+            margin-right: 0.1875rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-white">
+        <div class="container">
+            <a class="navbar-brand" href="">
+                <img src="{{ logo_navbar }}" class="retina-on">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="ml-auto navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-11 col-xl-10">
+                    <h1 class="page-title">Blog</h1>
+
+                    <div class="page-content">
+                        <div class="row pt-4">
+                            {% for blog_info in blog_data %}
+                            <div class="col-12 col-md-6 col-lg-6">
+                                <div class="card camping-card">
+                                    <a href="{{ blog_info.link }}" class="camping-card-cover-container">
+                                        <img class="camping-card-cover unveil retina-off"
+                                            data-src="{{ blog_info.link }}" src="{{ blog_info.link }}">
+                                    </a>
+                                    <p class="camping-card-title"><a href="">{{ blog_info.title }}</a></p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 pagination-container">
+
+                            <ul class="pagination justify-content-center">
+                                {% if current_page != 1 %}
+                                <li class="page-item">
+                                    <a rel="prev" class="page-link prev" href="/blog?page={{ current_page - 1 }}">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% for page_num in range(1, total_pages + 1) %}
+                                {% if page_num == current_page %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ page_num }}</span>
+                                </li>
+                                {% else %}
+                                {% if page_num <= current_page + 4 and page_num>= current_page - 4 %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                                    </li>
+                                    {% elif page_num == current_page + 5 or page_num == current_page - 5 %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#">...</a>
+                                    </li>
+                                    {% endif %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% if current_page != total_pages %}
+                                    <li class="page-item">
+                                        <a rel="next" class="page-link next" href="/blog?page={{ current_page + 1 }}">
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                            </ul>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-12 col-xl-3">
+                        <span class="footer-copyright"><img
+                                data-retina="https://d1kf5a25yh6v88.cloudfront.net/assets/front/icons/icon-footer@2x-83598b12f410cec673c313651af9ae6f2a06a12e93be766f0de619d6cfa67fab.png"
+                                src="https://d1kf5a25yh6v88.cloudfront.net/assets/front/icons/icon-footer@2x-83598b12f410cec673c313651af9ae6f2a06a12e93be766f0de619d6cfa67fab.png"
+                                class="retina-on"> © RUTERO 2018</span>
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-3 col-xl-3">
+                        <ul class="footer-list">
+                            <li class="header">Con el apoyo de</li>
+
+                            {% for partner in partners %}
+                            <li class="partner-logo">
+                                <a target="_blank" rel="nofollow" href="{{ partner.link }}">
+                                    <img src="{{ partner.logo }}" class="retina-off">
+                                </a>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-3 col-xl-3">
+                        <ul class="footer-list">
+                            <li class="header">Sobre Rutero</li>
+                            <li><a href="https://www.ruterocamping.com/paginas/preguntas-frecuentes">Preguntas
+                                    Frecuentes</a></li>
+                            <li><a href="https://www.ruterocamping.com/paginas/terminos-y-condiciones">Términos y
+                                    Condiciones</a></li>
+                            <li><a href="https://www.ruterocamping.com/paginas/politicas-de-privacidad">Políticas de
+                                    Privacidad</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-3 col-xl-3">
+                        <ul class="footer-list">
+                            <li class="social">
+                                <a class="facebook" target="_blank" rel="nofollow"
+                                    href="https://www.facebook.com/ruterocamping/">
+                                    <i class="fa fa-facebook fa-fw"></i>
+                                </a>
+                                <a class="twitter" target="_blank" rel="nofollow"
+                                    href="https://twitter.com/ruterocamping">
+                                    <i class="fa fa-twitter fa-fw"></i>
+                                </a>
+                                <a class="instagram" target="_blank" rel="nofollow"
+                                    href="https://www.instagram.com/ruterocamping/">
+                                    <i class="fa fa-instagram fa-fw"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
